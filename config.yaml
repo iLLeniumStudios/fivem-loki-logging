@@ -1,4 +1,4 @@
-baseDomain: fivem-loki-demo.illenium.gg
+baseDomain: ""
 email: example@domain.com # Only used if baseDomain is not ""
 k3s:
   version: v1.26.3+k3s1
