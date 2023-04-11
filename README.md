@@ -13,3 +13,4 @@ Automated logging setup for FiveM using Loki + Grafana with SSL certificates
 - Retention support
 - Loki behind authentication layer
 - Pre-configured SSL with valid certificates (if you have a domain)
+- Ready to be used with ox_lib
