@@ -10,6 +10,7 @@ loki:
   username: admin
   password: supersecurepassword
   exposedPort: 30001 # Only used if baseDomain is ""
+  retention: 744h # 24 * 31 (1 Month)
 grafana:
   version: 6.52.9 # Do not modify
   username: admin

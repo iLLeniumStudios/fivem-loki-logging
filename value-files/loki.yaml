@@ -1,5 +1,6 @@
 singleBinary:
   replicas: 1
+  targetModule: "all,table-manager"
   persistence:
     size: ${LOKI_STORAGE}
 monitoring:
@@ -23,6 +24,10 @@ loki:
   storage:
     type: filesystem
   auth_enabled: false
+  structuredConfig:
+    table_manager:
+      retention_deletes_enabled: true
+      retention_period: ${LOKI_RETENTION}
 gateway:
   deploymentStrategy:
     type: Recreate

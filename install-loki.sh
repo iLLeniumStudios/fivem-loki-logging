@@ -6,6 +6,7 @@ export LOKI_STORAGE=$(config_val "loki.storage")
 export LOKI_USERNAME=$(config_val "loki.username")
 export LOKI_PASSWORD=$(config_val "loki.password")
 export LOKI_DOMAIN="loki.$(config_val 'baseDomain')"
+export LOKI_RETENTION=$(config_val "loki.retention")
 
 envsubst < value-files/loki.yaml > value-files/loki.rendered.yaml
 
