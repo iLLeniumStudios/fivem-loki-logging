@@ -8,7 +8,7 @@
 ./install-grafana.sh
 
 if [[ "$(config_val 'baseDomain')" == "" ]]; then
-  IP=$(ip -f inet addr show eth0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
+  IP=$(ip -f inet addr show "$(ip route get 8.8.8.8 | sed -n 's/.*dev \([^\ ]*\).*/\1/p')" | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
   LOKI_URL="$IP:$(config_val 'loki.exposedPort')"
   GRAFANA_URL="$IP:$(config_val 'grafana.exposedPort')"
   PROTOCOL="http"
