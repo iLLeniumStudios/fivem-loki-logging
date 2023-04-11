@@ -1,0 +1,48 @@
+singleBinary:
+  replicas: 1
+  persistence:
+    size: ${LOKI_STORAGE}
+monitoring:
+  dashboards:
+    enabled: false
+  rules:
+    enabled: false
+  serviceMonitor:
+    enabled: false
+  selfMonitoring:
+    enabled: false
+    grafanaAgent:
+      installOperator: false
+  lokiCanary:
+    enabled: false
+test:
+  enabled: false
+loki:
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: filesystem
+  auth_enabled: false
+gateway:
+  deploymentStrategy:
+    type: Recreate
+  basicAuth:
+    enabled: true
+    username: ${LOKI_USERNAME}
+    password: ${LOKI_PASSWORD}
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      acme.cert-manager.io/http01-ingress-class: traefik
+    ingressClassName: traefik
+    hosts:
+    - host: ${LOKI_DOMAIN}
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+    tls:
+    - secretName: loki-gateway-tls
+      hosts:
+      - ${LOKI_DOMAIN}

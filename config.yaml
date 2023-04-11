@@ -1,0 +1,17 @@
+baseDomain: fivem-loki-demo.illenium.gg
+email: example@domain.com # Only used if baseDomain is not ""
+k3s:
+  version: v1.26.3+k3s1
+certManager:
+  version: v1.11.1 # Do not modify
+loki:
+  version: 5.0.0 # Do not modify
+  storage: 5Gi
+  username: admin
+  password: supersecurepassword
+  exposedPort: 30001 # Only used if baseDomain is ""
+grafana:
+  version: 6.52.9 # Do not modify
+  username: admin
+  password: verysecurepassword
+  exposedPort: 30000 # Only used if baseDomain is ""
