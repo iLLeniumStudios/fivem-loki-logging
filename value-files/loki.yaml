@@ -25,9 +25,33 @@ loki:
     type: filesystem
   auth_enabled: false
   structuredConfig:
+    limits_config:
+      max_query_parallelism: 32
+      retention_period: ${LOKI_RETENTION}
+      tsdb_max_query_parallelism: 512
     table_manager:
       retention_deletes_enabled: true
       retention_period: ${LOKI_RETENTION}
+    querier:
+      max_concurrent: 16
+    schema_config:
+      configs:
+      - from: "2020-09-07"
+        store: boltdb-shipper
+        object_store: filesystem
+        schema: v11
+        index:
+          prefix: index_
+          period: 24h
+      - from: "2023-04-10"
+        store: tsdb
+        object_store: filesystem
+        schema: v12
+        index:
+          prefix: index_
+          period: 24h
+    query_scheduler:
+      max_outstanding_requests_per_tenant: 32768
 gateway:
   deploymentStrategy:
     type: Recreate
