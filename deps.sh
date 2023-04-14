@@ -6,8 +6,30 @@ function add_helm_repos() {
 }
 
 function update_os() {
-  sudo apt update
-  sudo apt upgrade -y
+  apt update
+  apt upgrade -y
+  apt install -y curl wget git sudo lsb-release vim
+}
+
+function ensure_distro_specific_deps() {
+  DISTRO=$(lsb_release -si)
+  echo "Detected Distribution: $DISTRO"
+  if [[ "$DISTRO" == "Ubuntu" ]]; then
+    echo "Disabling ufw"
+    ufw disable
+    systemctl disable ufw
+  elif [[ "$DISTRO" == "Debian" ]]; then
+    echo "Updating iptables"
+    apt remove -y iptables nftables
+    apt install -y arptables ebtables
+    update-alternatives --set iptables /usr/sbin/iptables-legacy
+    update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+    update-alternatives --set arptables /usr/sbin/arptables-legacy
+    update-alternatives --set ebtables /usr/sbin/ebtables-legacy
+  else
+    echo "Unsupported Distribution. Exiting..."
+    exit 1
+  fi
 }
 
 function ensure_deps() {
@@ -33,7 +55,9 @@ function ensure_deps() {
   fi
 }
 
-ensure_deps
 update_os
+ensure_deps
+ensure_distro_specific_deps
+
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
