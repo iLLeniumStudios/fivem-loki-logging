@@ -4,12 +4,14 @@
 
 if [ ! -f /etc/rancher/k3s/k3s.yaml ]; then
   echo "k3s not installed. Installing."
-  curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=$(config_val "k3s.version") sh -
+  curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=$(config_val "k3s.version") INSTALL_K3S_EXEC="--disable=traefik" sh -
 
   wait_for_resource_rollout deployment metrics-server kube-system
   wait_for_resource_rollout deployment coredns kube-system
   wait_for_resource_rollout deployment local-path-provisioner kube-system
-  wait_for_resource_rollout deployment traefik kube-system
+
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-$(config_val "ingressNginxController.version")/deploy/static/provider/cloud/deploy.yaml
+  wait_for_resource_rollout deployment ingress-nginx-controller ingress-nginx
 else
   echo "k3s already installed. Skipping."
 fi

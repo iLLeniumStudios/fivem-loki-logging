@@ -62,10 +62,9 @@ gateway:
   ingress:
     enabled: true
     annotations:
-      traefik.ingress.kubernetes.io/router.tls: "true"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      acme.cert-manager.io/http01-ingress-class: traefik
-    ingressClassName: traefik
+    ingressClassName: nginx
     hosts:
     - host: ${LOKI_DOMAIN}
       paths:
