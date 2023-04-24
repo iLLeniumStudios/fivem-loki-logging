@@ -7,14 +7,14 @@ certManager:
 ingressNginxController:
   version: v1.7.0 # Do not modify
 loki:
-  version: 5.0.0 # Do not modify
+  version: 5.2.0 # Do not modify
   storage: 5Gi
   username: admin
   password: supersecurepassword
   exposedPort: 30001 # Only used if baseDomain is ""
   retention: 744h # 24 * 31 (1 Month)
 grafana:
-  version: 6.52.9 # Do not modify
+  version: 6.55.0 # Do not modify
   username: admin
   password: verysecurepassword
   exposedPort: 30000 # Only used if baseDomain is ""
