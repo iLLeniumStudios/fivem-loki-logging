@@ -10,6 +10,7 @@ datasources:
     - name: Loki
       type: loki
       url: http://loki-gateway.logging.svc.cluster.local
+      uid: DZgflSOH0WCbt6HIdnNC
       isDefault: true
       editable: false
       access: proxy
@@ -31,3 +32,6 @@ ingress:
     - ${GRAFANA_DOMAIN}
 adminUser: ${GRAFANA_USERNAME}
 adminPassword: ${GRAFANA_PASSWORD}
+sidecar:
+  dashboards:
+    enabled: true

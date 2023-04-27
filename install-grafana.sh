@@ -2,6 +2,8 @@
 
 . functions.sh
 
+kubectl apply -f manifests/dashboards.yaml -n logging
+
 export LOKI_USERNAME=$(config_val "loki.username")
 export LOKI_PASSWORD=$(config_val "loki.password")
 export GRAFANA_DOMAIN="grafana.$(config_val 'baseDomain')"
