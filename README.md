@@ -4,7 +4,7 @@ Automated logging setup for FiveM using Loki + Grafana with SSL certificates
 <div align='center'><h1><a href='https://docs.illenium.dev/free-resources/fivem-loki-logging/setup'>Documentation</a></h3></div>
 <br>
 
-![image](https://user-images.githubusercontent.com/104288623/234916609-b85cc6ca-25b0-404a-ace7-e57d84b76b30.png)
+![image](https://user-images.githubusercontent.com/104288623/234932495-71277281-a2e1-4fc5-8ec1-e864ae177543.png)
 
 ## Features
 
