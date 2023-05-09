@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function add_helm_repos() {
+function ensure_helm_repos() {
   helm repo add jetstack https://charts.jetstack.io
   helm repo add grafana https://grafana.github.io/helm-charts
   helm repo update
@@ -45,7 +45,6 @@ function ensure_deps() {
     echo "helm is already installed. Skipping."
   else
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-    add_helm_repos
   fi
 
   if command -v prettytable >/dev/null 2>&1 ; then
@@ -59,6 +58,7 @@ function ensure_deps() {
 update_os
 ensure_deps
 ensure_distro_specific_deps
+ensure_helm_repos
 
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
