@@ -26,6 +26,5 @@ fi
 printf "You can now add the following to your server.cfg in order to configure ox_lib Logger:\n\n"
 echo "set ox:logger \"loki\""
 echo "set loki:user \"$(config_val 'loki.username')\""
-echo "set loki:key \"$(config_val 'loki.password')\""
-echo "set loki:protocol \"$PROTOCOL\""
-echo "set loki:endpoint \"$LOKI_URL\""
+echo "set loki:password \"$(config_val 'loki.password')\""
+echo "set loki:endpoint \"${PROTOCOL}://${LOKI_URL}\""
