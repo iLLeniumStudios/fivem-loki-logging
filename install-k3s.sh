@@ -9,9 +9,6 @@ if [ ! -f /etc/rancher/k3s/k3s.yaml ]; then
   wait_for_resource_rollout deployment metrics-server kube-system
   wait_for_resource_rollout deployment coredns kube-system
   wait_for_resource_rollout deployment local-path-provisioner kube-system
-
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-$(config_val "ingressNginxController.version")/deploy/static/provider/cloud/deploy.yaml
-  wait_for_resource_rollout deployment ingress-nginx-controller ingress-nginx
 else
   echo "k3s already installed. Skipping."
 fi
@@ -19,7 +16,10 @@ fi
 if [[ "$(config_val 'baseDomain')" == "" ]]; then
   echo "baseDomain is empty. Skipping cert-manager."
 else
-  echo "baseDomain is not empty. Will install cert-manager."
+  echo "baseDomain is not empty. Will install cert-manager and ingress-nginx controller."
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-$(config_val "ingressNginxController.version")/deploy/static/provider/cloud/deploy.yaml
+  wait_for_resource_rollout deployment ingress-nginx-controller ingress-nginx
+
   helm upgrade --install cert-manager jetstack/cert-manager --version $(config_val "certManager.version") --namespace cert-manager --create-namespace --set installCRDs=true
 
   export EMAIL=$(config_val "email")
