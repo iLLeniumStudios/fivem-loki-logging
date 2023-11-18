@@ -1,6 +1,6 @@
 singleBinary:
   replicas: 1
-  targetModule: "all,table-manager"
+  targetModule: "all"
   persistence:
     size: ${LOKI_STORAGE}
 monitoring:
@@ -25,6 +25,9 @@ loki:
     type: filesystem
   auth_enabled: false
   structuredConfig:
+    storage_config:
+      tsdb_shipper:
+        shared_store: filesystem
     limits_config:
       max_query_parallelism: 32
       retention_period: ${LOKI_RETENTION}

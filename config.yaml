@@ -1,20 +1,20 @@
 baseDomain: ""
 email: example@domain.com # Only used if baseDomain is not ""
 k3s:
-  version: v1.27.3+k3s1
+  version: v1.28.3+k3s2
 certManager:
-  version: v1.12.3 # Do not modify
+  version: v1.13.2 # Do not modify
 ingressNginxController:
-  version: v1.8.1 # Do not modify
+  version: v1.9.4 # Do not modify
 loki:
-  version: 5.9.2 # Do not modify
+  version: 5.36.3 # Do not modify
   storage: 5Gi
   username: admin
   password: supersecurepassword
   exposedPort: 30001 # Only used if baseDomain is ""
   retention: 744h # 24 * 31 (1 Month)
 grafana:
-  version: 6.58.6 # Do not modify
+  version: 7.0.6 # Do not modify
   username: admin
   password: verysecurepassword
   exposedPort: 30000 # Only used if baseDomain is ""
