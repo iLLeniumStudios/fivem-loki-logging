@@ -8,7 +8,7 @@ ingressNginxController:
   version: v1.9.5 # Do not modify
 loki:
   version: 5.41.4 # Do not modify
-  storage: 5Gi
+  storage: 45Gi
   username: admin
   password: supersecurepassword
   exposedPort: 30001 # Only used if baseDomain is ""
