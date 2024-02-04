@@ -1,8 +1,8 @@
 ### System Requirements
 | Resource | Amount |
 | :--: | :--: |
-| CPU | 4C |
-| RAM | 4GB |
+| CPU | 2C |
+| RAM | 2GB |
 | Disk | 64GB |
 | OS | Debian 12 |
 
