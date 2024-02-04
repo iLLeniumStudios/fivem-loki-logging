@@ -15,8 +15,12 @@ Select label = server
 Select value = Your Server Name
 Click 'Run Query' in the top-right corner
 
+![Explore](images/Explore.png)
+
 ## Create New Grafana Users
 
 Menu (top-left) -> Administration -> Users -> New User
 
 Once the user has been created, click on their account on the Users page and edit their permissions as needed
+
+![Create User](images/Create-User.png)
