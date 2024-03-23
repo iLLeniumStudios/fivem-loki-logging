@@ -32,6 +32,9 @@ ingress:
     - ${GRAFANA_DOMAIN}
 adminUser: ${GRAFANA_USERNAME}
 adminPassword: ${GRAFANA_PASSWORD}
+automountServiceAccountToken: true
+serviceAccount:
+  automountServiceAccountToken: true
 sidecar:
   dashboards:
     enabled: true
